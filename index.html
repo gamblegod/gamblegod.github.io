@@ -61,6 +61,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vmware vsphere &amp; vcenter 6.0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/16/Vmware vsphere & vcenter 6.0/" class="article-date">
+  <time datetime="2016-01-16T05:35:53.000Z" itemprop="datePublished">2016-01-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/VMware/">VMware</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/16/Vmware vsphere & vcenter 6.0/">VMware vsphere &amp; vcenter 6.0</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>元旦过后又是漫长的出差生活，也真正开始体会南方湿冷的冬天。断断续续的下了一周雨，10多度的气温不算低，但总是有股刺骨的凉。终于到了周末，懒得出门，床上看完了池大的《MacTalk 人生元编程》，计划着什么时候自己也去买个MAC。<br>想买MAC就要更努力的工作，这一周开始使用vmware 6.0搭建虚拟化平台，趁着周末闲下来的午后，来整理下这一周的工作。<br>之前用过vmware 5.5，所以上手也就比较快。</p>
+<h2 id="vsphere_6-0安装">vsphere 6.0安装</h2><p>vsphere 6.0相比之前的5.5版本在最大支持特性上有了很大的提高，具体比较如下：<br><img src="/images/vmware/ESXi6-0.png" alt="ESXi6-0"><br>下载了最新的补丁，开机加载安装镜像，还是熟悉的画面<br><img src="/images/vmware/ESXi6-1.png" alt="ESXi6-1"><br>安装镜像加载正常<br><img src="/images/vmware/ESXi6-2.png" alt="ESXi6-2"><br>选择Enter开始安装<br><img src="/images/vmware/ESXi6-3.png" alt="ESXi6-3"><br>选择F11接受License并继续<br><img src="/images/vmware/ESXi6-4.png" alt="ESXi6-4"><br>选择将软件安装在本地系统盘<br><img src="/images/vmware/ESXi6-5.png" alt="ESXi6-5"><br>设置默认键盘布局<br><img src="/images/vmware/ESXi6-6.png" alt="ESXi6-6"><br>设置root密码<br><img src="/images/vmware/ESXi6-7.png" alt="ESXi6-7"><br>确认安装<br><img src="/images/vmware/ESXi6-8.png" alt="ESXi6-8"><br>完成安装并重启<br><img src="/images/vmware/ESXi6-9.png" alt="ESXi6-9"><br>设置ESXi主机IP地址<br><img src="/images/vmware/ESXi6-10.png" alt="ESXi6-10"><br>设置ESXi主机DNS、主机名信息<br><img src="/images/vmware/ESXi6-11.png" alt="ESXi6-11"></p>
+<h2 id="VCSA_6-0安装">VCSA 6.0安装</h2><p>相比常用的Windows版的vcenter server，还是Linux版的VCSA部署起来方便，并且在各项指标的支持上已经与Windows版的完全一致。6.0版本的VCSA安装上与先前的版本有了较大的变化，5.5版本的VCSA作为虚拟机模板直接部署，现在需要先安装插件，再通过网页的方式进行部署。<br>选择安装<br><img src="/images/vmware/vcenter6-1.png" alt="vcenter6-1"><br>选择接受最终用户许可协议<br><img src="/images/vmware/vcenter6-2.png" alt="vcenter6-2"><br>填写VCSA部署主机信息，包括IP地址、用户名和密码<br><img src="/images/vmware/vcenter6-3.png" alt="vcenter6-3"><br>设置VCSA虚拟机信息<br><img src="/images/vmware/vcenter6-4.png" alt="vcenter6-4"><br>因为是较小的vcenter，选择嵌入式Platform Services Controller<br><img src="/images/vmware/vcenter6-5.png" alt="vcenter6-5"><br>设置单点登录<br><img src="/images/vmware/vcenter6-6.png" alt="vcenter6-6"><br>选择设备大小为中型<br><img src="/images/vmware/vcenter6-7.png" alt="vcenter6-7"><br>将VCSA部署在共享存储上<br><img src="/images/vmware/vcenter6-8.png" alt="vcenter6-8"><br>使用嵌入式数据库PostgreSQL<br><img src="/images/vmware/vcenter6-9.png" alt="vcenter6-9"><br>VCSA网络设置<br><img src="/images/vmware/vcenter6-10.png" alt="vcenter6-10"><br>单机完成，开始部署<br><img src="/images/vmware/vcenter6-11.png" alt="vcenter6-11"><br>安装完成，可以通过web client管理vcenter<br><img src="/images/vmware/vcenter6-111.png" alt="vcenter6-12"><br>今天就先写这么多吧，办公室里实在是又冻手又冻脚，找个暖和的时候再继续写。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/16/Vmware vsphere & vcenter 6.0/" data-id="cijdtlsm00003j8iaak9li5ys" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Huawei E9000 Switch Module" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/24/Huawei E9000 Switch Module/" class="article-date">
@@ -87,7 +130,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>万事开头难！新搭建的博客平台有一个多月了，今天终于鼓起勇气在这个凄惨的平安夜里来写点什么。最近两天一直在鼓捣华为的E9000刀箱，好好的研究了下它的交换模块。<br>先说下我们的配置吧，1台E9000刀框，2个CX110以太网交换模块，2个CX210 SAN网络交换模块。7台CH240全宽刀片，每台分别安装MZ110和MZ910卡。<br>刀框背后有两个MM910管理模块（主备关系），默认IP地址分别为192.168.2.1/2，虚拟地址192.168.2.3。可以插4个交换模块，还是来个图比较直观：<br><img src="/images/VMware/E9000.png" alt="E9000"><br>刀框SAN网络交换模块连接SNS2248光纤交换机，以太网交换模块连接CE12808网络交换机。计算节点Mezz卡与交换模块对应关系如下（原谅我图画的比较丑）：<br><img src="/images/VMware/Mezz.png" alt="Mezz_to_switch_module"></p>
+        <p>万事开头难！新搭建的博客平台有一个多月了，今天终于鼓起勇气在这个凄惨的平安夜里来写点什么。最近两天一直在鼓捣华为的E9000刀箱，好好的研究了下它的交换模块。<br>先说下我们的配置吧，1台E9000刀框，2个CX110以太网交换模块，2个CX210 SAN网络交换模块。7台CH240全宽刀片，每台分别安装MZ110和MZ910卡。<br>刀框背后有两个MM910管理模块（主备关系），默认IP地址分别为192.168.2.1/2，虚拟地址192.168.2.3。可以插4个交换模块，还是来个图比较直观：<br><img src="/images/E9000/E9000.png" alt="E9000"><br>刀框SAN网络交换模块连接SNS2248光纤交换机，以太网交换模块连接CE12808网络交换机。计算节点Mezz卡与交换模块对应关系如下（原谅我图画的比较丑）：<br><img src="/images/E9000/Mezz.png" alt="Mezz_to_switch_module"></p>
 <h2 id="CX210_SAN交换模块配置">CX210 SAN交换模块配置</h2><p>CX210可以理解为一台对外8个8GB FC接口的SAN交换机，对内16个8GB FC接口分别对应各个槽位的计算节点，具体对应关系稍后会有详细说明。<br>对外的FC接口连接华为SNS2248光纤交换机，当CX210上连另一台SAN交换机时会有两种模式：<br>1）设置CX210为AG（Access Gateway）模式，以N-PORT方式上连，在上连的交换机上为其配置Zone；<br>2）设置CX210为Native模式（默认情况），以E-PORT方式上连，也就是我们常说的交换机级联；<br>由于没有买级联的License，所以我们也只能将CX210配置为AG模式。</p>
 <p>介绍配置步骤前先来普及下SAN交换机端口类型：<br>N端口：Node Port节点端口；节点连接点，光纤通道通信的终端；<br>E端口：Expansion Port 扩展端口；用于通过ISL（内部交换链接）连接多个交换机<br>F端口：Fabric Port 光纤端口；一种交换连接端口，也就是两个N端口连接的”中间端口”<br>G端口：Generic Port 通用端口；可根据连接方式，在F端口和E端口之间进行切换</p>
 <h3 id="CX210_AG模式配置方法">CX210 AG模式配置方法</h3><p>检查CX210当前配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">FC_SW:admin&gt; switchshow </span><br><span class="line">switchName:     FC_SW</span><br><span class="line">switchType:     <span class="number">134.1</span></span><br><span class="line">switchState:    Online   </span><br><span class="line">switchMode:     Native</span><br><span class="line">switchRole:     Principal</span><br><span class="line">switchDomain:   <span class="number">1</span></span><br><span class="line">switchId:       fffc01</span><br><span class="line">switchWwn:      <span class="number">10</span>:<span class="number">00</span>:<span class="number">50</span>:eb:<span class="number">1</span>a:e0:<span class="number">58</span>:a4</span><br><span class="line">zoning:         OFF</span><br><span class="line">switchBeacon:   OFF</span><br><span class="line"></span><br><span class="line">Index Port Address Media Speed       State   Proto</span><br><span class="line">==================================================</span><br><span class="line">   <span class="number">0</span>   <span class="number">0</span>   <span class="number">010000</span>   cu    <span class="number">8</span>G       No_Sync     FC  Disabled (Persistent) </span><br><span class="line">   <span class="number">1</span>   <span class="number">1</span>   <span class="number">010100</span>   id    N8       Online      FC  E-Port  segmented,<span class="number">10</span>:<span class="number">00</span>:<span class="number">50</span>:eb:<span class="number">1</span>a:ba:<span class="number">71</span>:d3 (No Fabric License)</span><br><span class="line">   <span class="number">2</span>   <span class="number">2</span>   <span class="number">010200</span>   id    N8       Online      FC  E-Port  segmented,<span class="number">10</span>:<span class="number">00</span>:<span class="number">50</span>:eb:<span class="number">1</span>a:ba:<span class="number">71</span>:d3 (No Fabric License)</span><br><span class="line">   <span class="number">3</span>   <span class="number">3</span>   <span class="number">010300</span>   id    N8       No_Light    FC  </span><br><span class="line">   <span class="number">4</span>   <span class="number">4</span>   <span class="number">010400</span>   id    N8       No_Light    FC  </span><br><span class="line">   <span class="number">5</span>   <span class="number">5</span>   <span class="number">010500</span>   --    N8       No_Module   FC  (No POD License) Disabled</span><br><span class="line">   <span class="number">6</span>   <span class="number">6</span>   <span class="number">010600</span>   --    N8       No_Module   FC  (No POD License) Disabled</span><br><span class="line">   <span class="number">7</span>   <span class="number">7</span>   <span class="number">010700</span>   --    N8       No_Module   FC  (No POD License) Disabled</span><br><span class="line">   <span class="number">8</span>   <span class="number">8</span>   <span class="number">010800</span>   --    N8       No_Module   FC  (No POD License) Disabled</span><br><span class="line">   <span class="number">9</span>   <span class="number">9</span>   <span class="number">010900</span>   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">10</span>  <span class="number">10</span>   <span class="number">010</span>a00   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">11</span>  <span class="number">11</span>   <span class="number">010</span>b00   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">12</span>  <span class="number">12</span>   <span class="number">010</span>c00   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">13</span>  <span class="number">13</span>   <span class="number">010</span>d00   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">14</span>  <span class="number">14</span>   <span class="number">010</span>e00   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">15</span>  <span class="number">15</span>   <span class="number">010</span>f00   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">16</span>  <span class="number">16</span>   <span class="number">011000</span>   cu    <span class="number">8</span>G       No_Sync     FC  Disabled (Persistent) </span><br><span class="line">  <span class="number">17</span>  <span class="number">17</span>   <span class="number">011100</span>   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">18</span>  <span class="number">18</span>   <span class="number">011200</span>   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">19</span>  <span class="number">19</span>   <span class="number">011300</span>   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">20</span>  <span class="number">20</span>   <span class="number">011400</span>   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">21</span>  <span class="number">21</span>   <span class="number">011500</span>   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">22</span>  <span class="number">22</span>   <span class="number">011600</span>   cu    <span class="number">8</span>G       No_Sync     FC  </span><br><span class="line">  <span class="number">23</span>  <span class="number">23</span>   <span class="number">011700</span>   cu    <span class="number">8</span>G       No_Sync     FC</span><br></pre></td></tr></table></figure></p>
@@ -113,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="ciijzae1700012oiakq1cq89s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="cijdtimeh0000j8iaz6p40zot" class="article-share-link">Share</a>
       
       
     </footer>
@@ -132,7 +175,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -145,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -155,6 +198,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/01/16/Vmware vsphere & vcenter 6.0/">VMware vsphere &amp; vcenter 6.0</a>
+          </li>
         
           <li>
             <a href="/2015/12/24/Huawei E9000 Switch Module/">Huawei E9000 Switch Module Configure</a>
