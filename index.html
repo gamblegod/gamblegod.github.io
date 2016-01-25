@@ -91,12 +91,12 @@
 <h2 id="创建数据中心">创建数据中心</h2><p>首先要创建数据中心<br><img src="/images/vdatacenter/dc-1.png" alt="dc-1"><br>之后是创建集群，可以开启vsphere HA和DRS功能<br><img src="/images/vdatacenter/dc-2.png" alt="dc-2"><br>使用vmware虚拟化后，省去先前关键业务主机必须要配置双机的麻烦，可以使用vpshere自带的HA功能实现应用包含。对于特别关键的业务还可以使用Fault Tolerance功能，vsphere 6.0版本开始FT支持每个虚拟机可以配置4vCPU。<br>添加主机到新创建的集群<br><img src="/images/vdatacenter/dc-3.png" alt="dc-3"><br>输入用户名密码，验证ESXi主机<br><img src="/images/vdatacenter/dc-4.png" alt="dc-4"><br>完成ESXi主机添加<br><img src="/images/vdatacenter/dc-5.png" alt="dc-5"></p>
 <h2 id="配置网络">配置网络</h2><p>vsphere网络配置分为标准交换机和分布式交换机。通俗讲标准交换机就是每台ESXi主机单独配置网络，分布式交换机则是在vcenter中创建交换机，并将各ESXi主机加入到分布式交换机。对于主机很多的集群，可以使用分布式交换机，简化配置步骤。<br>在我们的集群中，使用分布式交换机作为业务网络，使用标准交换机作为管理网络。</p>
 <h3 id="配置标准交换机">配置标准交换机</h3><p>标准交换机除作为管理网络，还可作为vmotion网络。vsphere6.0开始支持跨vcenter的vmotion，研究出来后再写一篇分享。<br>添加网络，选择VMKernel网络适配器<br><img src="/images/vnetwork/net-1.png" alt="net-1"><br>选择目标设备为现有标准交换机<br><img src="/images/vnetwork/net-2.png" alt="net-2"><br>设置端口属性<br><img src="/images/vnetwork/net-3.png" alt="net-3"><br>配置IP地址<br><img src="/images/vnetwork/net-4.png" alt="net-4"></p>
-<h3 id="配置分布式交换机">配置分布式交换机</h3><p>新建Distributed Switch<br><img src="/images/vnetwork/net-5.png" alt="net-5"><br>选择版本<br><img src="/images/vnetwork/net-6.png" alt="net-6"><br>编辑设置，选择上行链路，可以先不创建端口组<br><img src="/images/vnetwork/net-7.png" alt="net-7"><br>分布式交换机创建完成<br><img src="/images/vnetwork/net-8.png" alt="net-8"><br>为分布式交换机添加主机<br><img src="/images/vnetwork/net-9.png" alt="net-9"><br>添加集群内所有主机<br><img src="/images/vnetwork/net-10.png" alt="net-10"><br>选择网络适配器任务<br><img src="/images/vnetwork/net-11.png" alt="net-11"><br>分配上行链路<br><img src="/images/vnetwork/net-12.png" alt="net-12"><br>添加主机完成<br><img src="/images/vnetwork/net-13.png" alt="net-13"><br>新建分布式端口组<br><img src="/images/vnetwork/net-14.png" alt="net-14"><br>配置设置<br><img src="/images/vnetwork/net-15.png" alt="net-15"><br>配置完成<br><img src="/images/vnetwork/net-16.png" alt="net-16"><br>至此，完成Datacenter网络部分配置，可以开始创建虚拟机，并为虚拟机不同应用分配网络。</p>
-<h2 id="新建虚拟机">新建虚拟机</h2>
+<h3 id="配置分布式交换机">配置分布式交换机</h3><p>新建Distributed Switch<br><img src="/images/vnetwork/net-5.png" alt="net-5"><br>选择版本<br><img src="/images/vnetwork/net-6.png" alt="net-6"><br>编辑设置，选择上行链路，可以先不创建端口组<br><img src="/images/vnetwork/net-7.png" alt="net-7"><br>分布式交换机创建完成<br><img src="/images/vnetwork/net-8.png" alt="net-8"><br>为分布式交换机添加主机<br><img src="/images/vnetwork/net-9.png" alt="net-9"><br>添加集群内所有主机<br><img src="/images/vnetwork/net-10.png" alt="net-10"><br>选择网络适配器任务<br><img src="/images/vnetwork/net-11.png" alt="net-11"><br>分配上行链路<br><img src="/images/vnetwork/net-12.png" alt="net-12"><br>添加主机完成<br><img src="/images/vnetwork/net-13.png" alt="net-13"><br>新建分布式端口组<br><img src="/images/vnetwork/net-14.png" alt="net-14"><br>配置设置<br><img src="/images/vnetwork/net-15.png" alt="net-15"><br>配置完成<br><img src="/images/vnetwork/net-16.png" alt="net-16"><br>至此，完成Datacenter网络部分配置，vsphere基础环境配置完成，可以开始创建虚拟机啦！</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/17/Vmware vsphere & vcenter configuration/" data-id="cijgzm2r8000wb0iay4psavs1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/17/Vmware vsphere & vcenter configuration/" data-id="cijtqbu8n0005gciaz7m8me23" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/16/Vmware vsphere & vcenter installation/" data-id="cijgzlu03000ub0iatizlsdeb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/16/Vmware vsphere & vcenter installation/" data-id="cijtqbu8j0003gciabgrbo0dn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="cijdtimeh0000j8iaz6p40zot" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="cijtqbu7b0000gciaui13qtqq" class="article-share-link">Share</a>
       
       
     </footer>
