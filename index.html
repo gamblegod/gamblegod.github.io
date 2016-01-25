@@ -61,9 +61,54 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Vmware vsphere &amp; vcenter 6.0" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Vmware vsphere &amp; vcenter configuration" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/01/16/Vmware vsphere & vcenter 6.0/" class="article-date">
+    <a href="/2016/01/17/Vmware vsphere & vcenter configuration/" class="article-date">
+  <time datetime="2016-01-17T05:35:53.000Z" itemprop="datePublished">2016-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/VMware/">VMware</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/17/Vmware vsphere & vcenter configuration/">VMware vsphere &amp; vcenter configuration</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>天气依然很冷，但工作还是要做的，继续上一篇来讲讲vsphere6.0的配置。</p>
+<h2 id="创建数据中心">创建数据中心</h2><p>首先要创建数据中心<br><img src="/images/vdatacenter/dc-1.png" alt="dc-1"><br>之后是创建集群，可以开启vsphere HA和DRS功能<br><img src="/images/vdatacenter/dc-2.png" alt="dc-2"><br>使用vmware虚拟化后，省去先前关键业务主机必须要配置双机的麻烦，可以使用vpshere自带的HA功能实现应用包含。对于特别关键的业务还可以使用Fault Tolerance功能，vsphere 6.0版本开始FT支持每个虚拟机可以配置4vCPU。<br>添加主机到新创建的集群<br><img src="/images/vdatacenter/dc-3.png" alt="dc-3"><br>输入用户名密码，验证ESXi主机<br><img src="/images/vdatacenter/dc-4.png" alt="dc-4"><br>完成ESXi主机添加<br><img src="/images/vdatacenter/dc-5.png" alt="dc-5"></p>
+<h2 id="配置网络">配置网络</h2><p>vsphere网络配置分为标准交换机和分布式交换机。通俗讲标准交换机就是每台ESXi主机单独配置网络，分布式交换机则是在vcenter中创建交换机，并将各ESXi主机加入到分布式交换机。对于主机很多的集群，可以使用分布式交换机，简化配置步骤。<br>在我们的集群中，使用分布式交换机作为业务网络，使用标准交换机作为管理网络。</p>
+<h3 id="配置标准交换机">配置标准交换机</h3><p>标准交换机除作为管理网络，还可作为vmotion网络。vsphere6.0开始支持跨vcenter的vmotion，研究出来后再写一篇分享。<br>添加网络，选择VMKernel网络适配器<br><img src="/images/vnetwork/net-1.png" alt="net-1"><br>选择目标设备为现有标准交换机<br><img src="/images/vnetwork/net-2.png" alt="net-2"><br>设置端口属性<br><img src="/images/vnetwork/net-3.png" alt="net-3"><br>配置IP地址<br><img src="/images/vnetwork/net-4.png" alt="net-4"></p>
+<h3 id="配置分布式交换机">配置分布式交换机</h3><p>新建Distributed Switch<br><img src="/images/vnetwork/net-5.png" alt="net-5"><br>选择版本<br><img src="/images/vnetwork/net-6.png" alt="net-6"><br>编辑设置，选择上行链路，可以先不创建端口组<br><img src="/images/vnetwork/net-7.png" alt="net-7"><br>分布式交换机创建完成<br><img src="/images/vnetwork/net-8.png" alt="net-8"><br>为分布式交换机添加主机<br><img src="/images/vnetwork/net-9.png" alt="net-9"><br>添加集群内所有主机<br><img src="/images/vnetwork/net-10.png" alt="net-10"><br>选择网络适配器任务<br><img src="/images/vnetwork/net-11.png" alt="net-11"><br>分配上行链路<br><img src="/images/vnetwork/net-12.png" alt="net-12"><br>添加主机完成<br><img src="/images/vnetwork/net-13.png" alt="net-13"><br>新建分布式端口组<br><img src="/images/vnetwork/net-14.png" alt="net-14"><br>配置设置<br><img src="/images/vnetwork/net-15.png" alt="net-15"><br>配置完成<br><img src="/images/vnetwork/net-16.png" alt="net-16"><br>至此，完成Datacenter网络部分配置，可以开始创建虚拟机，并为虚拟机不同应用分配网络。</p>
+<h2 id="新建虚拟机">新建虚拟机</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/17/Vmware vsphere & vcenter configuration/" data-id="cijgzm2r8000wb0iay4psavs1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vmware vsphere &amp; vcenter installation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/16/Vmware vsphere & vcenter installation/" class="article-date">
   <time datetime="2016-01-16T05:35:53.000Z" itemprop="datePublished">2016-01-16</time>
 </a>
     
@@ -79,7 +124,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/16/Vmware vsphere & vcenter 6.0/">VMware vsphere &amp; vcenter 6.0</a>
+      <a class="article-title" href="/2016/01/16/Vmware vsphere & vcenter installation/">VMware vsphere &amp; vcenter installation</a>
     </h1>
   
 
@@ -88,13 +133,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>元旦过后又是漫长的出差生活，也真正开始体会南方湿冷的冬天。断断续续的下了一周雨，10多度的气温不算低，但总是有股刺骨的凉。终于到了周末，懒得出门，床上看完了池大的《MacTalk 人生元编程》，计划着什么时候自己也去买个MAC。<br>想买MAC就要更努力的工作，这一周开始使用vmware 6.0搭建虚拟化平台，趁着周末闲下来的午后，来整理下这一周的工作。<br>之前用过vmware 5.5，所以上手也就比较快。</p>
-<h2 id="vsphere_6-0安装">vsphere 6.0安装</h2><p>vsphere 6.0相比之前的5.5版本在最大支持特性上有了很大的提高，具体比较如下：<br><img src="/images/vmware/ESXi6-0.png" alt="ESXi6-0"><br>下载了最新的补丁，开机加载安装镜像，还是熟悉的画面<br><img src="/images/vmware/ESXi6-1.png" alt="ESXi6-1"><br>安装镜像加载正常<br><img src="/images/vmware/ESXi6-2.png" alt="ESXi6-2"><br>选择Enter开始安装<br><img src="/images/vmware/ESXi6-3.png" alt="ESXi6-3"><br>选择F11接受License并继续<br><img src="/images/vmware/ESXi6-4.png" alt="ESXi6-4"><br>选择将软件安装在本地系统盘<br><img src="/images/vmware/ESXi6-5.png" alt="ESXi6-5"><br>设置默认键盘布局<br><img src="/images/vmware/ESXi6-6.png" alt="ESXi6-6"><br>设置root密码<br><img src="/images/vmware/ESXi6-7.png" alt="ESXi6-7"><br>确认安装<br><img src="/images/vmware/ESXi6-8.png" alt="ESXi6-8"><br>完成安装并重启<br><img src="/images/vmware/ESXi6-9.png" alt="ESXi6-9"><br>设置ESXi主机IP地址<br><img src="/images/vmware/ESXi6-10.png" alt="ESXi6-10"><br>设置ESXi主机DNS、主机名信息<br><img src="/images/vmware/ESXi6-11.png" alt="ESXi6-11"></p>
-<h2 id="VCSA_6-0安装">VCSA 6.0安装</h2><p>相比常用的Windows版的vcenter server，还是Linux版的VCSA部署起来方便，并且在各项指标的支持上已经与Windows版的完全一致。6.0版本的VCSA安装上与先前的版本有了较大的变化，5.5版本的VCSA作为虚拟机模板直接部署，现在需要先安装插件，再通过网页的方式进行部署。<br>选择安装<br><img src="/images/vmware/vcenter6-1.png" alt="vcenter6-1"><br>选择接受最终用户许可协议<br><img src="/images/vmware/vcenter6-2.png" alt="vcenter6-2"><br>填写VCSA部署主机信息，包括IP地址、用户名和密码<br><img src="/images/vmware/vcenter6-3.png" alt="vcenter6-3"><br>设置VCSA虚拟机信息<br><img src="/images/vmware/vcenter6-4.png" alt="vcenter6-4"><br>因为是较小的vcenter，选择嵌入式Platform Services Controller<br><img src="/images/vmware/vcenter6-5.png" alt="vcenter6-5"><br>设置单点登录<br><img src="/images/vmware/vcenter6-6.png" alt="vcenter6-6"><br>选择设备大小为中型<br><img src="/images/vmware/vcenter6-7.png" alt="vcenter6-7"><br>将VCSA部署在共享存储上<br><img src="/images/vmware/vcenter6-8.png" alt="vcenter6-8"><br>使用嵌入式数据库PostgreSQL<br><img src="/images/vmware/vcenter6-9.png" alt="vcenter6-9"><br>VCSA网络设置<br><img src="/images/vmware/vcenter6-10.png" alt="vcenter6-10"><br>单机完成，开始部署<br><img src="/images/vmware/vcenter6-11.png" alt="vcenter6-11"><br>安装完成，可以通过web client管理vcenter<br><img src="/images/vmware/vcenter6-111.png" alt="vcenter6-12"><br>今天就先写这么多吧，办公室里实在是又冻手又冻脚，找个暖和的时候再继续写。</p>
+<h2 id="vsphere_6-0安装">vsphere 6.0安装</h2><p>vsphere 6.0相比之前的5.5版本在最大支持特性上有了很大的提高，具体比较如下：<br><img src="/images/vsphere/ESXi6-0.png" alt="ESXi6-0"><br>下载了最新的补丁，开机加载安装镜像，还是熟悉的画面<br><img src="/images/vsphere/ESXi6-1.png" alt="ESXi6-1"><br>安装镜像加载正常<br><img src="/images/vsphere/ESXi6-2.png" alt="ESXi6-2"><br>选择Enter开始安装<br><img src="/images/vsphere/ESXi6-3.png" alt="ESXi6-3"><br>选择F11接受License并继续<br><img src="/images/vsphere/ESXi6-4.png" alt="ESXi6-4"><br>选择将软件安装在本地系统盘<br><img src="/images/vsphere/ESXi6-5.png" alt="ESXi6-5"><br>设置默认键盘布局<br><img src="/images/vsphere/ESXi6-6.png" alt="ESXi6-6"><br>设置root密码<br><img src="/images/vsphere/ESXi6-7.png" alt="ESXi6-7"><br>确认安装<br><img src="/images/vsphere/ESXi6-8.png" alt="ESXi6-8"><br>完成安装并重启<br><img src="/images/vsphere/ESXi6-9.png" alt="ESXi6-9"><br>设置ESXi主机IP地址<br><img src="/images/vsphere/ESXi6-10.png" alt="ESXi6-10"><br>设置ESXi主机DNS、主机名信息<br><img src="/images/vsphere/ESXi6-11.png" alt="ESXi6-11"></p>
+<h2 id="VCSA_6-0安装">VCSA 6.0安装</h2><p>相比常用的Windows版的vcenter server，还是Linux版的VCSA部署起来方便，并且在各项指标的支持上已经与Windows版的完全一致。6.0版本的VCSA安装上与先前的版本有了较大的变化，5.5版本的VCSA作为虚拟机模板直接部署，现在需要先安装插件，再通过网页的方式进行部署。<br>选择安装<br><img src="/images/vcenter/vcenter6-1.png" alt="vcenter6-1"><br>选择接受最终用户许可协议<br><img src="/images/vcenter/vcenter6-2.png" alt="vcenter6-2"><br>填写VCSA部署主机信息，包括IP地址、用户名和密码<br><img src="/images/vcenter/vcenter6-3.png" alt="vcenter6-3"><br>设置VCSA虚拟机信息<br><img src="/images/vcenter/vcenter6-4.png" alt="vcenter6-4"><br>因为是较小的vcenter，选择嵌入式Platform Services Controller<br><img src="/images/vcenter/vcenter6-5.png" alt="vcenter6-5"><br>设置单点登录<br><img src="/images/vcenter/vcenter6-6.png" alt="vcenter6-6"><br>选择设备大小为中型<br><img src="/images/vcenter/vcenter6-7.png" alt="vcenter6-7"><br>将VCSA部署在共享存储上<br><img src="/images/vcenter/vcenter6-8.png" alt="vcenter6-8"><br>使用嵌入式数据库PostgreSQL<br><img src="/images/vcenter/vcenter6-9.png" alt="vcenter6-9"><br>VCSA网络设置<br><img src="/images/vcenter/vcenter6-10.png" alt="vcenter6-10"><br>单机完成，开始部署<br><img src="/images/vcenter/vcenter6-11.png" alt="vcenter6-11"><br>安装完成，可以通过web client管理vcenter<br><img src="/images/vcenter/vcenter6-111.png" alt="vcenter6-12"><br>今天就先写这么多吧，办公室里实在是又冻手又冻脚，找个暖和的时候再继续写。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/16/Vmware vsphere & vcenter 6.0/" data-id="cijgufnwi00033oiagmbnwtkj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/16/Vmware vsphere & vcenter installation/" data-id="cijgzlu03000ub0iatizlsdeb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -156,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="cijgufnvw00003oiaui7xharx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="cijdtimeh0000j8iaz6p40zot" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +220,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -188,7 +233,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -200,7 +245,11 @@
       <ul>
         
           <li>
-            <a href="/2016/01/16/Vmware vsphere & vcenter 6.0/">VMware vsphere &amp; vcenter 6.0</a>
+            <a href="/2016/01/17/Vmware vsphere & vcenter configuration/">VMware vsphere &amp; vcenter configuration</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/16/Vmware vsphere & vcenter installation/">VMware vsphere &amp; vcenter installation</a>
           </li>
         
           <li>
