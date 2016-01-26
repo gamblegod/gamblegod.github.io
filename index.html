@@ -61,6 +61,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Create vMachine &amp; Template" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/24/Create vMachine & Template/" class="article-date">
+  <time datetime="2016-01-24T08:50:53.000Z" itemprop="datePublished">2016-01-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/VMware/">VMware</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/24/Create vMachine & Template/">Create vMachine &amp; Profile</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这周全国遇上了几十年一遇的寒潮，广州都下雪了，福州也没好到哪去，最低温度到了零下。听着屋外的大风，坐在办公室里发抖，脚则冻成了冰块。最近仍然在折腾虚拟化，希望能多写几篇，把这个主题做充实。<br>之前已经完成了vsphere和vcenter的安装配置，接下来就要真的开始创建虚拟机了。</p>
+<h2 id="创建虚拟机">创建虚拟机</h2><p>首先要创建资源组<br><img src="/images/vmachine/vm-1.png" alt="vm-1"><br>在创建的资源组内新建虚拟机<br><img src="/images/vmachine/vm-2.png" alt="vm-2"><br>指定虚拟机名称，选择虚拟机所在的数据中心<br><img src="/images/vmachine/vm-3.png" alt="vm-3"><br>选择计算资源<br><img src="/images/vmachine/vm-4.png" alt="vm-4"><br>选择存储器，类型为Thin provision<br><img src="/images/vmachine/vm-5.png" alt="vm-5"><br>选择兼容性，ESXi 6.0及更高版本<br><img src="/images/vmachine/vm-6.png" alt="vm-6"><br>选择客户机操作系统<br><img src="/images/vmachine/vm-7.png" alt="vm-7"><br>自定义硬件-CPU<br><img src="/images/vmachine/vm-8.png" alt="vm-8"><br>自定义硬件-MEMORY<br><img src="/images/vmachine/vm-9.png" alt="vm-9"><br>自定义硬件-DISK<br><img src="/images/vmachine/vm-10.png" alt="vm-10"><br>自定义硬件-NETWORK<br><img src="/images/vmachine/vm-11.png" alt="vm-11"></p>
+<h2 id="创建虚拟机自定义规范">创建虚拟机自定义规范</h2><p>通过使用自定义规范，可以自动配置新建虚拟机的主机名、IP地址信息，另外，最大的好处是在windows虚拟机克隆时自动生成不同的SID<br>新建自定义规范<br><img src="/images/vprofile/pro-1.png" alt="pro-1"><br>设置注册信息<br><img src="/images/vprofile/pro-2.png" alt="pro-2"><br>设置主机名，通过附加数值保证唯一性<br><img src="/images/vprofile/pro-3.png" alt="pro-3"><br>输入windows许可证<br><img src="/images/vprofile/pro-4.png" alt="pro-4"><br>设置管理员密码<br><img src="/images/vprofile/pro-5.png" alt="pro-5"><br>设置时区<br><img src="/images/vprofile/pro-6.png" alt="pro-6"><br>编辑网络<br><img src="/images/vprofile/pro-7.png" alt="pro-7"><br>设置工作组或域<br><img src="/images/vprofile/pro-8.png" alt="pro-8"><br>设置操作系统选项<br><img src="/images/vprofile/pro-9.png" alt="pro-9"><br>完成配置<br><img src="/images/vprofile/pro-10.png" alt="pro-10"></p>
+<h2 id="虚拟机模板">虚拟机模板</h2><p>为不同应用创建虚拟机模板，通过模板可以快速部署虚拟机。<br>选择名称和文件夹<br><img src="/images/vtemplate/tem-1.png" alt="tem-1"><br>选择计算资源<br><img src="/images/vtemplate/tem-2.png" alt="tem-2"><br>选择存储器<br><img src="/images/vtemplate/tem-3.png" alt="tem-3"><br>选择克隆选项<br><img src="/images/vtemplate/tem-4.png" alt="tem-4"><br>选择先前创建的规范<br><img src="/images/vtemplate/tem-5.png" alt="tem-5"><br>网络设置<br><img src="/images/vtemplate/tem-6.png" alt="tem-6"><br>完成部署<br><img src="/images/vtemplate/tem-7.png" alt="tem-7"><br>至此，介绍完了虚拟机的创建、自定义规范创建、以及通过模板部署虚拟机。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/24/Create vMachine & Template/" data-id="cijtqg7fe00052cia3yh5tpsn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Vmware vsphere &amp; vcenter configuration" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/01/17/Vmware vsphere & vcenter configuration/" class="article-date">
@@ -96,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/17/Vmware vsphere & vcenter configuration/" data-id="cijtqbu8n0005gciaz7m8me23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/17/Vmware vsphere & vcenter configuration/" data-id="cijgzm2r8000wb0iay4psavs1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/16/Vmware vsphere & vcenter installation/" data-id="cijtqbu8j0003gciabgrbo0dn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/16/Vmware vsphere & vcenter installation/" data-id="cijgzlu03000ub0iatizlsdeb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="cijtqbu7b0000gciaui13qtqq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/12/24/Huawei E9000 Switch Module/" data-id="cijdtimeh0000j8iaz6p40zot" class="article-share-link">Share</a>
       
       
     </footer>
@@ -220,7 +264,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -233,7 +277,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -243,6 +287,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/01/24/Create vMachine & Template/">Create vMachine &amp; Profile</a>
+          </li>
         
           <li>
             <a href="/2016/01/17/Vmware vsphere & vcenter configuration/">VMware vsphere &amp; vcenter configuration</a>
