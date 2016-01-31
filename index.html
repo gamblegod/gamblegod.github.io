@@ -61,9 +61,113 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Create vMachine &amp; Template" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-vRealize Automation &amp; Operations" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/01/24/Create vMachine & Template/" class="article-date">
+    <a href="/2016/01/29/vRealize Automation & Operations/" class="article-date">
+  <time datetime="2016-01-29T06:12:53.000Z" itemprop="datePublished">2016-01-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/VMware/">VMware</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/29/vRealize Automation & Operations/">vRealize Automation &amp; Operations Manager</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>搭建完vsphere基础环境后，决定测试下VMware云管理平台产品vRealize Automation，结果却掉入到一个深不见底的坑里，断断续续搞了有一周，每次快要爬到地面，却又重重的摔了下去。还好没有放弃，最终还是搞出来了。记录下整个过程，希望能对后来人有帮助。</p>
+<h2 id="vRealize_Automation">vRealize Automation</h2><p>测试的版本是vRealize Automation 7.0</p>
+<h3 id="安装前准备">安装前准备</h3><p>需要配置Windows Active Directory域，域名为mycluster.local<br>配置DNS和NTP服务<br>具体步骤不介绍了，网上有详细的步骤，我也是靠度娘的。</p>
+<h3 id="部署vRealize_Automation_Appliance">部署vRealize Automation Appliance</h3><p>部署OVF模板<br><img src="/images/vautomation/vra-1.png" alt="vra-1"><br>查看详细信息<br><img src="/images/vautomation/vra-2.png" alt="vra-2"><br>接受许可协议<br><img src="/images/vautomation/vra-3.png" alt="vra-3"><br>选择名称和文件夹<br><img src="/images/vautomation/vra-4.png" alt="vra-4"><br>选择存储<br><img src="/images/vautomation/vra-5.png" alt="vra-5"><br>设置网络<br><img src="/images/vautomation/vra-6.png" alt="vra-6"><br>自定义模板<br><img src="/images/vautomation/vra-7.png" alt="vra-7"><br>部署完成<br><img src="/images/vautomation/vra-8.png" alt="vra-8"></p>
+<h3 id="部署IaaS服务器">部署IaaS服务器</h3><p>安装Windows 2012操作系统，关闭本地防火墙，加入mycluster.local域，并安装.NET 4.5.2和JDK软件。<br>设置Java系统变量，包括：JAVA_HOME、CLASS_PATH、PATH<br>为IaaS服务器添加角色和功能，安装Microsoft SQL Server 2012数据库</p>
+<h3 id="通过部署向导配置vRealize_Automation_Appliance">通过部署向导配置vRealize Automation Appliance</h3><p>使用vRealize Automation配置向导<br><img src="/images/vautomation/vra-9.png" alt="vra-9"><br>接受End User License Agreement<br><img src="/images/vautomation/vra-10.png" alt="vra-10"><br>部署类型选择最小安装，安装要求<br><img src="/images/vautomation/vra-11.png" alt="vra-11"><br>点击“run”执行安装检查<br><img src="/images/vautomation/vra-12.png" alt="vra-12"><br>指定Host地址<br><img src="/images/vautomation/vra-13.png" alt="vra-13"><br>设置密码<br><img src="/images/vautomation/vra-14.png" alt="vra-14"><br>设置IaaS主机<br><img src="/images/vautomation/vra-15.png" alt="vra-15"><br>设置Microsoft SQL Server数据库<br><img src="/images/vautomation/vra-16.png" alt="vra-16"><br>添加DEM<br><img src="/images/vautomation/vra-17.png" alt="vra-17"><br>设置Agent<br><img src="/images/vautomation/vra-18.png" alt="vra-18"><br>创建证书<br><img src="/images/vautomation/vra-19.png" alt="vra-19"><br>Web证书<br><img src="/images/vautomation/vra-20.png" alt="vra-20"><br>管理服务证书<br><img src="/images/vautomation/vra-21.png" alt="vra-21"><br>验证配置<br><img src="/images/vautomation/vra-22.png" alt="vra-22"><br>创建快照<br><img src="/images/vautomation/vra-23.png" alt="vra-23"><br>开始安装<br><img src="/images/vautomation/vra-24.png" alt="vra-24"><br>完成安装<br><img src="/images/vautomation/vra-25.png" alt="vra-25"><br>输入License，网上找到一个临时的<br><img src="/images/vautomation/vra-26.png" alt="vra-26"><br>创建配置管理员<br><img src="/images/vautomation/vra-27.png" alt="vra-27"><br>完成部署<br><img src="/images/vautomation/vra-28.png" alt="vra-28"><br>看到Successfully小兴奋了一下，谁知道头疼的还在后边。</p>
+<h3 id="vRealize_Automation基本配置和管理">vRealize Automation基本配置和管理</h3><p>使用浏览器访问<a href="https://vra.myscluster.local/vcac，通过configurationadmin账户登录。" target="_blank" rel="external">https://vra.myscluster.local/vcac，通过configurationadmin账户登录。</a><br>打开管理-&gt;身份目录管理-&gt;目录，点击“添加目录”<br><img src="/images/vautomation/vra-29.png" alt="vra-29"><br>输入“目录名称”、“基本DN”、“绑定DN”、“绑定DN密码”，点击“保存并执行下一步”<br><img src="/images/vautomation/vra-30.png" alt="vra-30"><br><img src="/images/vautomation/vra-31.png" alt="vra-31"><br>确认域信息正确，点击“下一步”<br><img src="/images/vautomation/vra-32.png" alt="vra-32"><br>添加Manager中的自定义属性为“Manager”，点击“下一步”<br><img src="/images/vautomation/vra-33.png" alt="vra-33"><br>选择要同步的组，点击“下一步”<br><img src="/images/vautomation/vra-34.png" alt="vra-34"><br>选择希望同步的用户，点击“下一步”<br><img src="/images/vautomation/vra-35.png" alt="vra-35"><br>确认配置完成和同步状态<br><img src="/images/vautomation/vra-36.png" alt="vra-36"></p>
+<p>打开管理-&gt;用户和组-&gt;目录用户和组，搜索框内输入“administrator”<br><img src="/images/vautomation/vra-37.png" alt="vra-37"><br>向此用户添加角色，点击“完成”<br><img src="/images/vautomation/vra-38.png" alt="vra-38"></p>
+<p>注销当前用户，切换到vsphere.local域，使用administrator用户登录<br><img src="/images/vautomation/vra-39.png" alt="vra-39"><br>进入管理-&gt;租户，打开“vsphere.local”，在IaaS管理员中添加“administrator”用户，点击“完成”<br><img src="/images/vautomation/vra-40.png" alt="vra-40"></p>
+<p>使用administrator用户登录到“mycluster.local”域<br>进入基础架构-&gt;端点-&gt;端点，点击New在下拉菜单选择Orchestrator-&gt;vRealize Orchestrator<br><img src="/images/vautomation/vra-41.png" alt="vra-41"><br>输入Orchestrator配置，点击OK完成配置<br><img src="/images/vautomation/vra-42.png" alt="vra-42"><br>进入基础架构-&gt;端点-&gt;端点，点击New在下拉菜单选择Virtual-&gt;vSphere(vCenter)<br><img src="/images/vautomation/vra-43.png" alt="vra-43"><br>输入vCenter配置，点击OK完成配置<br><img src="/images/vautomation/vra-44.png" alt="vra-44"><br>进入基础架构-&gt;计算资源-&gt;计算资源，在集群展开菜单中选择“Data Collection”<br><img src="/images/vautomation/vra-45.png" alt="vra-45"><br>点击Inventory中的Request Now按键，直到状态变为Succeeded<br><img src="/images/vautomation/vra-46.png" alt="vra-46"><br>进入基础架构-&gt;端点-&gt;架构组，点击New创建Fabric Groups<br><img src="/images/vautomation/vra-47.png" alt="vra-47"><br>进入基础架构-&gt;管理-&gt;计算机前缀，点击New创建计算机前缀<br><img src="/images/vautomation/vra-48.png" alt="vra-48"><br>进入管理-&gt;用户和组-&gt;业务组，点击新建<br><img src="/images/vautomation/vra-49.png" alt="vra-49"><br>添加业务组成员<br><img src="/images/vautomation/vra-50.png" alt="vra-50"><br>基础架构选择“Dev-”作为默认计算机前缀<br><img src="/images/vautomation/vra-51.png" alt="vra-51"></p>
+<p>进入基础架构-&gt;预留-&gt;网络配置文件，点击New按钮<br><img src="/images/vautomation/vra-52.png" alt="vra-52"><br>配置IP地址池<br><img src="/images/vautomation/vra-53.png" alt="vra-53"></p>
+<p>进入基础架构-&gt;预留-&gt;预留，点击New按钮<br><img src="/images/vautomation/vra-54.png" alt="vra-54"><br>配置保留计算资源<br><img src="/images/vautomation/vra-55.png" alt="vra-55"><br>配置保留网络资源<br><img src="/images/vautomation/vra-56.png" alt="vra-56"></p>
+<p>进入设计-&gt;蓝图，点击新建按钮<br><img src="/images/vautomation/vra-57.png" alt="vra-57"><br>点击计算资源，鼠标左键拖拽vSphere Machine至右侧画布中<br><img src="/images/vautomation/vra-58.png" alt="vra-58"><br>填写构建信息<br><img src="/images/vautomation/vra-59.png" alt="vra-59"><br>点击网络与安全，鼠标左键拖拽现有网络至右侧画布中，现有网络中选择“Default External Network Profile”<br><img src="/images/vautomation/vra-60.png" alt="vra-60"><br>选中蓝图，点击发布<br><img src="/images/vautomation/vra-61.png" alt="vra-61"></p>
+<p>进入管理-&gt;目录管理-&gt;服务，点击新建按钮<br><img src="/images/vautomation/vra-62.png" alt="vra-62"><br>进入管理-&gt;目录管理-&gt;授权，点击新建按钮<br><img src="/images/vautomation/vra-63.png" alt="vra-63"><br>创建授权<br><img src="/images/vautomation/vra-64.png" alt="vra-64"><br>进入管理-&gt;目录管理-&gt;目录项，选中蓝图，点击配置<br><img src="/images/vautomation/vra-65.png" alt="vra-65"><br>配置目录项<br><img src="/images/vautomation/vra-66.png" alt="vra-66"><br>进入目录，选到蓝图，点击请求<br><img src="/images/vautomation/vra-67.png" alt="vra-67"><br>点击提交<br><img src="/images/vautomation/vra-68.png" alt="vra-68"><br>通过请求页面查看部署状态<br><img src="/images/vautomation/vra-69.png" alt="vra-69"><br>部署完成后，进入项目页面查看已部署服务<br><img src="/images/vautomation/vra-70.png" alt="vra-70"><br>至此，vRealize Automation基本配置已经完成。</p>
+<p>进入管理-&gt;审批管理，点击新建，选择服务目录-目录项请求<br><img src="/images/vautomation/vra-71.png" alt="vra-71"><br>新建批准策略<br><img src="/images/vautomation/vra-72.png" alt="vra-72"><br>新建级别<br><img src="/images/vautomation/vra-73.png" alt="vra-73"><br>进入管理-&gt;目录管理-&gt;授权，选择“Development”授权，点击编辑<br><img src="/images/vautomation/vra-74.png" alt="vra-74"><br>在授权项目中选择CentOS6.5，选择修改策略<br><img src="/images/vautomation/vra-75.png" alt="vra-75"><br>应用策略<br><img src="/images/vautomation/vra-76.png" alt="vra-76"><br>进入目录页，点击请求；进入请求页，查看状态为待审批<br><img src="/images/vautomation/vra-77.png" alt="vra-77"><br>进入收件箱-&gt;批准，选中待审批项目，点击查看详细信息<br><img src="/images/vautomation/vra-78.png" alt="vra-78"><br>输入Approval理由，点击批准<br><img src="/images/vautomation/vra-79.png" alt="vra-79"><br>再次切换到请求页，查看状态为正在进行<br><img src="/images/vautomation/vra-80.png" alt="vra-80"></p>
+<h2 id="vRealize_Operations_Manager">vRealize Operations Manager</h2><p>这是vSphere中运维监控的组件，目前已经可以和vsphere打包一起买，简称vSOM</p>
+<h3 id="vRealize_Operations_Manager部署">vRealize Operations Manager部署</h3><p>部署OVF模板<br><img src="/images/voperation/vom-1.png" alt="vom-1"><br>查看详细信息<br><img src="/images/voperation/vom-2.png" alt="vom-2"><br>接受许可协议<br><img src="/images/voperation/vom-3.png" alt="vom-3"><br>选择名称和文件夹<br><img src="/images/voperation/vom-4.png" alt="vom-4"><br>选择配置<br><img src="/images/voperation/vom-5.png" alt="vom-5"><br>选择存储<br><img src="/images/voperation/vom-6.png" alt="vom-6"><br>设置网络<br><img src="/images/voperation/vom-7.png" alt="vom-7"><br>自定义模板<br><img src="/images/voperation/vom-8.png" alt="vom-8"><br>部署完成<br><img src="/images/voperation/vom-9.png" alt="vom-9"></p>
+<h3 id="vRealize_Operations_Manager初始配置">vRealize Operations Manager初始配置</h3><p>选择新安装<br><img src="/images/voperation/vom-10.png" alt="vom-10"><br>新建集群<br><img src="/images/voperation/vom-11.png" alt="vom-11"><br>设置管理员账号和密码<br><img src="/images/voperation/vom-12.png" alt="vom-12"><br>选择证书<br><img src="/images/voperation/vom-13.png" alt="vom-13"><br>部署设置<br><img src="/images/voperation/vom-14.png" alt="vom-14"><br>后续步骤<br><img src="/images/voperation/vom-15.png" alt="vom-15"><br>首次登录<br><img src="/images/voperation/vom-16.png" alt="vom-16"><br>接受EULA<br><img src="/images/voperation/vom-17.png" alt="vom-17"><br>输入产品许可证密钥<br><img src="/images/voperation/vom-18.png" alt="vom-18"><br>客户体验计划<br><img src="/images/voperation/vom-19.png" alt="vom-19"><br>完成配置<br><img src="/images/voperation/vom-20.png" alt="vom-20"></p>
+<p>配置管理解决方案<br><img src="/images/voperation/vom-21.png" alt="vom-21"><br>定义监控目标<br><img src="/images/voperation/vom-22.png" alt="vom-22"><br>配置完成<br><img src="/images/voperation/vom-23.png" alt="vom-23"></p>
+<h3 id="vRealize_Automation集成Operations_Manager">vRealize Automation集成Operations Manager</h3><p>进入管理-&gt;回收-&gt;衡量指标提供程序，选择vRealize Operations Manager端点<br><img src="/images/voperation/vom-24.png" alt="vom-24"><br>测试连接成功后，点击保存<br><img src="/images/voperation/vom-25.png" alt="vom-25"><br>点击确定，信任证书<br><img src="/images/voperation/vom-26.png" alt="vom-26"><br>进入管理-&gt;回收-&gt;租户计算机，可以看到运行状态显示<br><img src="/images/voperation/vom-27.png" alt="vom-27"></p>
+<p>这个主题的内容终于完成了，成功的通过vRealize Automation完成虚拟机部署，并结合Operations Manager进行虚拟化平台监控。更详细的内容我也在学习中，以后慢慢来补充。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/29/vRealize Automation & Operations/" data-id="cijzalv540004y0iaz3rzp725" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vsphere data protection &amp; replication" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/26/vsphere data protection & replication/" class="article-date">
+  <time datetime="2016-01-26T08:15:53.000Z" itemprop="datePublished">2016-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/VMware/">VMware</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/26/vsphere data protection & replication/">vSphere Data Protection &amp; Replication</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为没有单独购买备份软件和带库，使用vSphere Data Protection将虚拟机备份到共享存储；因为用户这里有备份站点，使用vSphere Replication将虚拟机同步到备站</p>
+<h2 id="vSphere_Data_Protection虚拟机备份">vSphere Data Protection虚拟机备份</h2><p>部署OVF模板<br><img src="/images/vdataprotection/vdp-1.png" alt="vdp-1"><br>查看详细信息<br><img src="/images/vdataprotection/vdp-2.png" alt="vdp-2"><br>接受许可协议<br><img src="/images/vdataprotection/vdp-3.png" alt="vdp-3"><br>选择名称和文件夹<br><img src="/images/vdataprotection/vdp-4.png" alt="vdp-4"><br>选择存储器<br><img src="/images/vdataprotection/vdp-5.png" alt="vdp-5"><br>设置网络<br><img src="/images/vdataprotection/vdp-6.png" alt="vdp-6"><br>配置网络参数<br><img src="/images/vdataprotection/vdp-7.png" alt="vdp-7"><br>完成部署<br><img src="/images/vdataprotection/vdp-8.png" alt="vdp-8"><br>开始初始配置<br><img src="/images/vdataprotection/vdp-9.png" alt="vdp-9"><br>网络设置<br><img src="/images/vdataprotection/vdp-10.png" alt="vdp-10"><br>选择时区<br><img src="/images/vdataprotection/vdp-11.png" alt="vdp-11"><br>设置密码<br><img src="/images/vdataprotection/vdp-12.png" alt="vdp-12"><br>vCenter注册<br><img src="/images/vdataprotection/vdp-13.png" alt="vdp-13"><br>创建存储<br><img src="/images/vdataprotection/vdp-14.png" alt="vdp-14"><br>设备分配<br><img src="/images/vdataprotection/vdp-15.png" alt="vdp-15"><br>CPU和内存<br><img src="/images/vdataprotection/vdp-16.png" alt="vdp-16"><br>产品改进<br><img src="/images/vdataprotection/vdp-17.png" alt="vdp-17"><br>完成配置<br><img src="/images/vdataprotection/vdp-18.png" alt="vdp-18"><br>重启vCenter后，在web client已能够看到VDP的应用，选择“连接”<br><img src="/images/vdataprotection/vdp-19.png" alt="vdp-19"><br>创建备份作业<br><img src="/images/vdataprotection/vdp-20.png" alt="vdp-20"><br>作业类型<br><img src="/images/vdataprotection/vdp-21.png" alt="vdp-21"><br>数据类型<br><img src="/images/vdataprotection/vdp-22.png" alt="vdp-22"><br>选择备份源<br><img src="/images/vdataprotection/vdp-23.png" alt="vdp-23"><br>备份计划<br><img src="/images/vdataprotection/vdp-24.png" alt="vdp-24"><br>保留计划<br><img src="/images/vdataprotection/vdp-25.png" alt="vdp-25"><br>作业名称<br><img src="/images/vdataprotection/vdp-26.png" alt="vdp-26"><br>完成配置<br><img src="/images/vdataprotection/vdp-27.png" alt="vdp-27"></p>
+<h2 id="vSphere_Replication虚拟机复制">vSphere Replication虚拟机复制</h2><p>部署OVF模板<br><img src="/images/vreplication/vrep-1.png" alt="vrep-1"><br>查看详细信息<br><img src="/images/vreplication/vrep-2.png" alt="vrep-2"><br>接受许可协议<br><img src="/images/vreplication/vrep-3.png" alt="vrep-3"><br>选择名称和文件夹<br><img src="/images/vreplication/vrep-4.png" alt="vrep-4"><br>选择配置<br><img src="/images/vreplication/vrep-5.png" alt="vrep-5"><br>选择存储<br><img src="/images/vreplication/vrep-6.png" alt="vrep-6"><br>设置网络<br><img src="/images/vreplication/vrep-7.png" alt="vrep-7"><br>自定义模板<br><img src="/images/vreplication/vrep-8.png" alt="vrep-8"><br>vService绑定<br><img src="/images/vreplication/vrep-9.png" alt="vrep-9"><br>配置完成<br><img src="/images/vreplication/vrep-10.png" alt="vrep-10"><br>连接目标站点<br><img src="/images/vreplication/vrep-11.png" alt="vrep-11"><br>配置复制<br><img src="/images/vreplication/vrep-12.png" alt="vrep-12"><br>选择目标站点<br><img src="/images/vreplication/vrep-13.png" alt="vrep-13"><br>选择复制服务器<br><img src="/images/vreplication/vrep-14.png" alt="vrep-14"><br>选择目标位置<br><img src="/images/vreplication/vrep-15.png" alt="vrep-15"><br>复制选项<br><img src="/images/vreplication/vrep-16.png" alt="vrep-16"><br>恢复设置<br><img src="/images/vreplication/vrep-17.png" alt="vrep-17"><br>配置完成<br><img src="/images/vreplication/vrep-18.png" alt="vrep-18"><br>同步成功后，可以在目标站点执行恢复。<br><img src="/images/vreplication/vrep-19.png" alt="vrep-19"><br>恢复到的文件夹<br><img src="/images/vreplication/vrep-20.png" alt="vrep-20"><br>恢复到的资源池<br><img src="/images/vreplication/vrep-21.png" alt="vrep-21"><br>完成恢复<br><img src="/images/vreplication/vrep-22.png" alt="vrep-22"><br>vSphere Replication可以方便的通过以太网进行虚拟机的复制，但在目标端恢复虚拟机后，先前的同步不能继续执行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/01/26/vsphere data protection & replication/" data-id="cijv4lxn7000nd8iakp39dooc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Create vMachine &amp; Profile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/24/Create vMachine & Profile/" class="article-date">
   <time datetime="2016-01-24T08:50:53.000Z" itemprop="datePublished">2016-01-24</time>
 </a>
     
@@ -79,7 +183,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/24/Create vMachine & Template/">Create vMachine &amp; Profile</a>
+      <a class="article-title" href="/2016/01/24/Create vMachine & Profile/">Create vMachine &amp; Profile</a>
     </h1>
   
 
@@ -95,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/24/Create vMachine & Template/" data-id="cijtqg7fe00052cia3yh5tpsn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/24/Create vMachine & Profile/" data-id="cijv4jwvx000hd8iaxhm7p5aj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -264,7 +368,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">4</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -277,7 +381,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -289,7 +393,15 @@
       <ul>
         
           <li>
-            <a href="/2016/01/24/Create vMachine & Template/">Create vMachine &amp; Profile</a>
+            <a href="/2016/01/29/vRealize Automation & Operations/">vRealize Automation &amp; Operations Manager</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/26/vsphere data protection & replication/">vSphere Data Protection &amp; Replication</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/24/Create vMachine & Profile/">Create vMachine &amp; Profile</a>
           </li>
         
           <li>
@@ -298,10 +410,6 @@
         
           <li>
             <a href="/2016/01/16/Vmware vsphere & vcenter installation/">VMware vsphere &amp; vcenter installation</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/24/Huawei E9000 Switch Module/">Huawei E9000 Switch Module Configure</a>
           </li>
         
       </ul>
